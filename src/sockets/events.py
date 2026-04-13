@@ -85,14 +85,10 @@ def handle_join(*args):
                 "message_delivered",
                 {"receiver_id": user_id, "status": "delivered"},
                 room=f"user_{sender}",
-            )
-        try:
-            db.session.commit()
-
-            return "success", 200
-        except:
-            db.session.rollback
-            return False,400
+            )  
+    return "success", 200
+   
+          
 
 
 ## send message event
@@ -146,7 +142,7 @@ def handle_message(data):
             {"id": message.id, "status": "delivered"},
             room=f"user_{sender_id}",
         )
-
+        
         new_notification = Notification(
             user_id=receiver_id, message="you have a new message"
         )
@@ -158,13 +154,14 @@ def handle_message(data):
             {"id": new_notification.id, "message": new_notification.message},
             room=f"user_{receiver_id}",
         )
-
+        return 'success',200
     else:
         io.emit(
             "message_delivered",
             {"id": message.id, "status": "sent"},
             room=f"user_{sender_id}",
         )
+        return 'success',200
 
 
 ## read message event
@@ -199,7 +196,7 @@ def handle_message_read(data):
 
     except Exception as e:
         db.session.rollback()
-        return False
+        return False,400
 
 
 ## typing event
@@ -210,6 +207,7 @@ def handle_typing(data):
 
     if is_online:
         io.emit("typing", {"typing": True}, room=f"user_{receiver_id}")
+        return 'success',200
 
 
 ## disconnect event

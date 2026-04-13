@@ -38,7 +38,9 @@ def register():
         user.set_password(password)
         db.session.add(user)
         db.session.commit()
-        return success_response(status_code=201, message="user created successfully")
+        db.session.refresh(user)
+        return success_response(status_code=201, 
+                                message="user created successfully")
     except Exception as e:
         db.session.rollback()
         print(e)
@@ -64,7 +66,7 @@ def login():
         return error_response(401, "invalid credentials")
 
     access_token = create_access_token(identity=str(user.id))
-    return success_response(data={"access_token": access_token})
+    return success_response(data={"access_token": access_token,"id":user.id,"username":user.username})
 
 
 @user_bp.get("/unread")

@@ -149,7 +149,9 @@ Authorization: Bearer <JWT>
 | `message_read` | Client -> Server -> Client | Client sends `{ "sender_id": 1 }` | Marks delivered messages as read and emits read receipt |
 | `typing` | Client -> Server -> Client | `{ "receiver_id": 2 }` | Typing indicator to receiver |
 | `notification` | Server -> Client | Notification payload | Real-time app/admin notification |
+
 | `fetch_offline_messages` | Server -> Client | `{ "messages": [...] }` | Delivers queued messages on reconnect/join |
+
 | `inc_unread_msg` | Server -> Client | `{ "sender_id": 1, "count": 3 }` | Real-time unread counter updates |
 
 ## 6. Chat Flow (Sent, Delivered, Read)
@@ -191,19 +193,7 @@ Authorization: Bearer <JWT>
 - `created_at`
 
 
-## 10. Answers to Assignment Questions
 
-1. How to ensure delivery with network failures?
-- Persist before emit, use message IDs, retry/ack strategy, reconcile on reconnect.
+---
 
-2. How to scale to millions?
-- Horizontal Socket.IO nodes, Redis pub/sub adapter, sharding/partitioning, worker queues, observability and rate limits.
-
-3. Role of rooms in Socket.IO?
-- Private routing per user/conversation; here `user_<id>` is per-user channel.
-
-4. How to add encryption?
-- TLS in transit, optional end-to-end encryption with client-side keys and ciphertext storage.
-
-5. Polling vs WebSockets?
-- Polling is repeated request/response; WebSockets are persistent, low-latency, bidirectional.
+---

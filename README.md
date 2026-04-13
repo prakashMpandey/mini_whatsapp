@@ -193,7 +193,3 @@ Authorization: Bearer <JWT>
 - `created_at`
 
 
-
----
-
----

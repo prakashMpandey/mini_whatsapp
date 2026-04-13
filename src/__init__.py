@@ -13,10 +13,11 @@ from flask_socketio import SocketIO
 import redis
 
 
-REDIS_URL = "redis://localhost:6379/0"
+REDIS_URL = os.getenv("REDIS_URL")
 
 
-r = redis.Redis(host="localhost", port=6379, decode_responses=True)
+
+r = redis.Redis(host=os.getenv("REDIS_HOST"), port=os.getenv("REDIS_PORT"), decode_responses=True)
 
 db = SQLAlchemy()
 migrate = Migrate()

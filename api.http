@@ -1,0 +1,23 @@
+POST http://127.0.0.1:3000/register
+Content-Type: application/json
+
+{
+    "username": "test",
+    "password":"test123"
+}
+###
+
+POST http://127.0.0.1:5000/login
+Content-Type: application/json
+
+{
+    "username": "admin3",
+    "password":"admin"
+}
+
+### 
+GET http://127.0.0.1:5000/delete
+
+### 
+GET http://127.0.0.1:5000/unread
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc3NjAxMDUyMSwianRpIjoiYjg4YzMyMzAtYjgzMC00ZjUzLWIzYWItMWMwZjhmYTkzYjhkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NzYwMTA1MjEsImNzcmYiOiI1OGFlY2FhYS1kNjYwLTQ4OTQtOGNmMC02NWY0ZDVmMDMzNTUiLCJleHAiOjE3NzYwMTE0MjF9.Vp7cwd2D0Tu6sJPbgiGNMUSi_bQ_4-fNHFcr3jRg1AM

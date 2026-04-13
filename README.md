@@ -88,12 +88,6 @@ set FLASK_APP=app.py
 flask db upgrade
 ```
 
-or 
-### 🐳 Run with Docker (Recommended)
-The easiest way to run the entire stack (App + MySQL) is using Docker:
-```bash
-docker-compose up --build
-```
 
 If migrations are not initialized:
 
